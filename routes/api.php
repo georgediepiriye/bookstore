@@ -21,6 +21,10 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
     });
 
 Route::get('/authors/{author}',[AuthorsController::class,'show']);
+Route::get('/authors',[AuthorsController::class,'index']);
+Route::post('/authors',[AuthorsController::class,'store']);
+Route::put('/authors/{author}',[AuthorsController::class,'update']);
+Route::delete('/authors/{author}',[AuthorsController::class,'destroy']);
 });
 
 

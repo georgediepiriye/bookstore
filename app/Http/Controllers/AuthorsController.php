@@ -17,6 +17,7 @@ class AuthorsController extends Controller
     public function index()
     {
         //
+        return AuthorsResource::collection(Author::all());
     }
 
     /**
@@ -37,7 +38,10 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $author=Author::create([
+            'name'=>$request->input('name')
+        ]);
+        return new AuthorsResource($author);
     }
 
     /**
@@ -71,9 +75,13 @@ class AuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Author $author)
     {
         //
+        $author->update([
+            'name'=>$request->input('name')
+        ]);
+        return new AuthorsResource($author);
     }
 
     /**
@@ -82,8 +90,10 @@ class AuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Author $author)
     {
         //
+        $author->delete();
+        return response(null,204);
     }
 }
