@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorsRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Http\Resources\AuthorsResource;
@@ -36,7 +37,7 @@ class AuthorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AuthorsRequest $request)
     {
         $author=Author::create([
             'name'=>$request->input('name')
@@ -75,7 +76,7 @@ class AuthorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorsRequest $request, Author $author)
     {
         //
         $author->update([
